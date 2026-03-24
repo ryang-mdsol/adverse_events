@@ -17,3 +17,8 @@ Repository to load and analyze adverse event data
    ```bash
    python src/snowflake/create_snowflake_key.py
    ```
+
+4. Add the key from the terminal into `~/.bashrc`:
+   ```bash
+   export snowflake_private_key=<key from previous step>
+   ```

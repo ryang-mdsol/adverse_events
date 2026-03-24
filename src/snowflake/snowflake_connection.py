@@ -23,14 +23,14 @@ ctx = snowflake.connector.connect(
     private_key_file=os.getenv('snowflake_key_path')
 )
 
-# Run query
-query = "SELECT * FROM requested_forms LIMIT 10"
-cur = ctx.cursor()
-cur.execute(query)
-df = cur.fetch_pandas_all()
+def load_data_from_snowflake(query: str):
+    """Load data from Snowflake using the provided query."""
+    cur = ctx.cursor()
+    cur.execute(query)
+    df = cur.fetch_pandas_all()
+    ctx.close()
+    return df
 
-print(f"Loaded {len(df)} rows")
-print(df.head())
-
-# Close connection
-ctx.close()
+if __name__ == "__main__":
+    df = load_data_from_snowflake("SELECT * FROM requested_forms LIMIT 10")
+    print(df.head())
