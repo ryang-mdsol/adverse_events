@@ -1,10 +1,10 @@
-import snowflake.connector
 import os
+import snowflake.connector
 
 # Snowflake configuration
 config = {
     'account': 'vaa16628.us-east-1',
-    'user': 'yoyang',
+    'user': os.getenv('USER'),
     'warehouse': 'ACORN_DSE_PROD_VW',
     'database': 'ACORN_DSE_UAT_DATA_MART_CLN',
     'schema': 'AE_PREDICTION',
@@ -24,7 +24,7 @@ ctx = snowflake.connector.connect(
 )
 
 # Run query
-query = "SELECT * FROM requested_forms"
+query = "SELECT * FROM requested_forms LIMIT 10"
 cur = ctx.cursor()
 cur.execute(query)
 df = cur.fetch_pandas_all()
