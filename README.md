@@ -22,3 +22,8 @@ Repository to load and analyze adverse event data
    ```bash
    export snowflake_private_key=<key from previous step>
    ```
+
+5. Test that everything works (from project root):
+   ```bash
+   python src/snowflake/snowflake_connection.py
+   ```

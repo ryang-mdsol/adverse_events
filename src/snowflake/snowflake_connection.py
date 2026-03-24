@@ -23,6 +23,7 @@ ctx = snowflake.connector.connect(
     private_key_file=os.getenv('snowflake_key_path')
 )
 
+# Function to load data from Snowflake
 def load_data_from_snowflake(query: str):
     """Load data from Snowflake using the provided query."""
     cur = ctx.cursor()
@@ -32,5 +33,6 @@ def load_data_from_snowflake(query: str):
     return df
 
 if __name__ == "__main__":
-    df = load_data_from_snowflake("SELECT * FROM requested_forms LIMIT 10")
+    query = "SELECT * FROM requested_forms LIMIT 10"
+    df = load_data_from_snowflake(query)
     print(df.head())
